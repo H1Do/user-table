@@ -1,0 +1,19 @@
+.Input {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    padding: 10px 16px;
+    transition-duration: var(--transition-duration);
+
+    &:disabled {
+        opacity: 0.8;
+    }
+
+    &:not(:disabled):active,
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+        color: var(--white-color);
+        background-color: var(--primary-color);
+    }
+}

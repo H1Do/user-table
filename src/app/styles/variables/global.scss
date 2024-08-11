@@ -17,6 +17,16 @@
     --white-color: #fff;
     --black-color: #000;
     --bg-color: var(--white-color);
+    --inverted-bg-color: var(--black-color);
+
+    // overlay
+
+    --overlay-color: rgb(0 0 0 / 50%);
+
+    // skeleton
+
+    --skeleton-shadow: rgb(0 0 0 / 20%);
+    --skeleton-color: rgb(0 0 0 / 12%);
 
     // transition
 
