@@ -52,9 +52,10 @@ export default [
             'react-hooks/exhaustive-deps': 'error',
             'no-param-reassign': 'off',
             'no-undef': 'off',
-            '@typescript-eslint/no-unused-vars': ['warn'],
+            '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
             'no-unused-vars': 'off',
             'react/no-array-index-key': 'off',
+            'react/prop-types': 'off',
         },
     },
 ];

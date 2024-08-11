@@ -4,7 +4,7 @@ import { buildCssLoader } from './loaders/buildCssLoaders';
 import { buildSvgLoader } from './loaders/buildSvgLoader';
 import { buildBabelLoader } from './loaders/buildBabelLoader';
 
-export const buildLoader = (options: BuildOptions): webpack.RuleSetRule[] => {
+export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
     const cssLoader = buildCssLoader(options.mode === 'development');
 
     const typescriptLoader = {

@@ -1,7 +1,14 @@
 {
-    "extends": "stylelint-config-standard-scss",
+    "extends": ["stylelint-config-standard-scss"],
     "rules": {
-      "indentation": [4],
-      "selector-class-pattern": null
+        "selector-class-pattern": null,
+        "color-hex-length": "short",
+        "max-nesting-depth": 3,
+        "no-duplicate-selectors": true,
+        "declaration-no-important": true,
+        "block-no-empty": true,
+        "no-empty-source": true,
+        "selector-max-id": 0,
+        "scss/at-mixin-pattern": "^_[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
     }
-  }
+}

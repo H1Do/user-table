@@ -1,5 +1,5 @@
 import { buildDevServer } from './buildDevServer';
-import { buildLoader } from './buildLoader';
+import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';
 import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
@@ -16,7 +16,7 @@ export const buildWebpackConfig = (options: BuildOptions) => {
             filename: '[name].[contenthash].js',
         },
         module: {
-            rules: buildLoader(options),
+            rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),
         plugins: buildPlugins(options),
