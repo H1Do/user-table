@@ -1,4 +1,4 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { configureStore, ReducersMapObject, ThunkDispatch, UnknownAction } from '@reduxjs/toolkit';
 import { usersReducer } from 'entities/Users';
 import { $api } from 'shared/api/api';
 import { StateSchema, ThunkExtraArgument } from './StateSchema';
@@ -27,4 +27,4 @@ export function createReduxStore(initialState?: StateSchema) {
     return store;
 }
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export type AppDispatch = ThunkDispatch<StateSchema, ThunkExtraArgument, UnknownAction>;

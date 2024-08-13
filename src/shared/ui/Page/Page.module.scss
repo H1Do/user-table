@@ -1,0 +1,13 @@
+.Page {
+    max-width: 1200px;
+    width: 100%;
+    min-height: 100svh;
+    margin-inline: auto;
+    padding: 30px 16px;
+
+    &.alignCenter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,3 +1,5 @@
+import { sortDirectionValues } from 'shared/config/types/sort';
+
 export interface User {
     id: number;
     firstName: string;
@@ -70,15 +72,10 @@ export interface User {
 }
 
 export enum sortByValues {
-    FULL_NAME = 'full name',
-    AGE = 'age',
-    SEX = 'sex',
-    ADDRESS = 'address',
-}
-
-export enum sortDirectionValues {
-    ASC = 'asc',
-    DESC = 'desc',
+    FULL_NAME = 'Full name',
+    AGE = 'Age',
+    GENDER = 'Gender',
+    ADDRESS = 'Address',
 }
 
 export interface UsersSchema {

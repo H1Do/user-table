@@ -1,0 +1,25 @@
+.UsersTable {
+    border-collapse: collapse;
+
+    .sortable {
+        cursor: pointer;
+        transition: var(--transition-duration) background;
+
+        &:hover {
+            background-color: var(--light-gray-color);
+        }
+    }
+}
+
+.loaderWrapper {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading {
+    * {
+        overflow: hidden;
+    }
+}

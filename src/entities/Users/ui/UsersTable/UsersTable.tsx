@@ -1,0 +1,123 @@
+import { memo, useMemo, useState } from 'react';
+import { sortDirectionValues } from 'shared/config/types/sort';
+import { Loader } from 'shared/ui/Loader/Loader';
+import { Table } from 'shared/ui/Table/Table';
+import { sortByValues, User } from '../../model/types/users';
+import { UsersTableItem } from '../UsersTableItem/UsersTableItem';
+import cls from './UsersTable.module.scss';
+
+interface UsersTableProps {
+    className?: string;
+    users: User[];
+    isLoading?: boolean;
+}
+
+export const UsersTable = memo(function UsersTableComponent({ className, users, isLoading }: UsersTableProps) {
+    const [sortBy, setSortBy] = useState<sortByValues>();
+    const [sortDirection, setSortDirection] = useState<sortDirectionValues>();
+
+    const renderUsersTableItems = (user: User) => {
+        return <UsersTableItem className={cls.item} user={user} key={user.id} />;
+    };
+
+    const onSort = (newSortBy: sortByValues) => {
+        if (newSortBy === sortBy) {
+            if (sortDirection === sortDirectionValues.ASC) {
+                setSortDirection(sortDirectionValues.DESC);
+            } else if (sortDirection === sortDirectionValues.DESC) {
+                setSortDirection(undefined);
+            } else {
+                setSortDirection(sortDirectionValues.ASC);
+            }
+            return;
+        }
+        setSortBy(newSortBy);
+        setSortDirection(sortDirectionValues.ASC);
+    };
+
+    const sortedUsers = useMemo(
+        () =>
+            users.slice().sort((firstUser, secondUser) => {
+                if (!sortDirection) {
+                    return 0;
+                }
+
+                if (sortBy === sortByValues.FULL_NAME) {
+                    const firstUserFullName = `${firstUser.firstName}${firstUser.lastName}${firstUser.maidenName}`;
+                    const secondUserFullName = `${secondUser.firstName}${secondUser.lastName}${secondUser.maidenName}`;
+
+                    if (sortDirection === sortDirectionValues.ASC) {
+                        return firstUserFullName.localeCompare(secondUserFullName);
+                    } else {
+                        return secondUserFullName.localeCompare(firstUserFullName);
+                    }
+                } else if (sortBy === sortByValues.AGE) {
+                    if (sortDirection === sortDirectionValues.ASC) {
+                        return firstUser.age - secondUser.age;
+                    } else {
+                        return secondUser.age - firstUser.age;
+                    }
+                } else if (sortBy === sortByValues.GENDER) {
+                    if (sortDirection === sortDirectionValues.ASC) {
+                        return firstUser.gender.localeCompare(secondUser.gender);
+                    } else {
+                        return secondUser.gender.localeCompare(firstUser.gender);
+                    }
+                } else if (sortBy === sortByValues.ADDRESS) {
+                    const firstUserAddress = `${firstUser.address.city}${firstUser.address.address}`;
+                    const secondUserAddress = `${secondUser.address.city}${secondUser.address.address}`;
+
+                    if (sortDirection === sortDirectionValues.ASC) {
+                        return firstUserAddress.localeCompare(secondUserAddress);
+                    } else {
+                        return secondUserAddress.localeCompare(firstUserAddress);
+                    }
+                }
+
+                return 0;
+            }),
+        [sortDirection, sortBy, users],
+    );
+
+    const headers = useMemo(() => ['Full name', 'Age', 'Gender', 'Phone', 'Address'], []);
+
+    const sortableHeaders = useMemo(
+        () => [sortByValues.FULL_NAME, sortByValues.AGE, sortByValues.GENDER, sortByValues.ADDRESS],
+        [],
+    );
+
+    const onThClick = (thName: string) => {
+        onSort(thName as sortByValues);
+    };
+
+    if (isLoading) {
+        return (
+            <>
+                <Table
+                    headers={headers}
+                    sortableHeaders={sortableHeaders}
+                    minCellWidth={50}
+                    className={cls.loading}
+                    onThClick={onThClick}
+                    currentSortHeader={sortBy}
+                    sortDirection={sortDirection}
+                />
+                <div className={cls.loaderWrapper}>
+                    <Loader />
+                </div>
+            </>
+        );
+    }
+
+    return (
+        <Table
+            headers={headers}
+            sortableHeaders={sortableHeaders}
+            minCellWidth={50}
+            tableContent={sortedUsers.map(renderUsersTableItems)}
+            onThClick={onThClick}
+            currentSortHeader={sortBy}
+            sortDirection={sortDirection}
+        />
+    );
+});

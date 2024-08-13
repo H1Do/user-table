@@ -1,0 +1,80 @@
+.Table {
+    display: grid;
+    overflow: auto hidden;
+    grid-template-columns:
+        minmax(150px, 3fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr);
+
+    &Wrapper {
+        max-width: 100%;
+        background: var(--table-bg-color);
+        overflow: hidden;
+    }
+
+    thead,
+    tbody,
+    tr {
+        display: contents;
+    }
+
+    th {
+        position: relative;
+        text-align: left;
+        padding: var(--table-cell-padding);
+        min-width: var(--min-cell-width);
+
+        span {
+            position: relative;
+            user-select: none;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: block;
+
+            &.sortable {
+                cursor: pointer;
+            }
+
+            .sortIndicator {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                translate: 0 -50%;
+                opacity: 0;
+                transition: var(--transition-duration) opacity;
+
+                svg {
+                    display: block;
+                }
+            }
+
+            &:hover {
+                .sortIndicator {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .resizeHandle {
+        display: block;
+        position: absolute;
+        cursor: col-resize;
+        width: 7px;
+        right: 0;
+        top: 0;
+        z-index: var(--table-resizer-z-index);
+        border-right: 2px solid transparent;
+
+        &:hover {
+            border-color: var(--gray-color);
+        }
+
+        &.active {
+            border-color: var(--black-color);
+        }
+    }
+}

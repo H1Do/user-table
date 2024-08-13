@@ -1,0 +1,32 @@
+.UsersTableItem {
+    cursor: pointer;
+
+    &:hover {
+        * {
+            background-color: var(--light-gray-color);
+        }
+    }
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-top: 1px solid var(--gray-color);
+        padding: var(--table-cell-padding);
+        transition: var(--transition-duration) background;
+    }
+}
+
+.modal {
+    &Content {
+        min-width: 400px;
+    }
+
+    &Label {
+        font-weight: 500;
+    }
+
+    &Value {
+        text-align: right;
+    }
+}

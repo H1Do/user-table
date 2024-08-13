@@ -6,13 +6,13 @@ export const fetchUsers = createAsyncThunk<User[], string, ThunkConfig<string>>(
     'users/fetchUsers',
     async (query, thunkAPI) => {
         try {
-            const data = await thunkAPI.extra.api.get<User[]>(`/users/search?q=${query}`);
+            const data = await thunkAPI.extra.api.get<{ users: User[] }>(`/users/search?q=${query}`);
 
             if (!data) {
                 throw new Error('Response data is empty');
             }
 
-            return data;
+            return data.users;
         } catch (error) {
             return thunkAPI.rejectWithValue(String(error));
         }

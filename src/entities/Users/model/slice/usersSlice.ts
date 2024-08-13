@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchUsers } from '../services/fetchUsers';
-import { sortByValues, sortDirectionValues, UsersSchema } from '../types/users';
+import { sortByValues, UsersSchema } from '../types/users';
+import { sortDirectionValues } from 'shared/config/types/sort';
 
 const initialState: UsersSchema = {
     users: [],

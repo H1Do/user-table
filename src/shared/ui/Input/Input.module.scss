@@ -6,6 +6,10 @@
     padding: 10px 16px;
     transition-duration: var(--transition-duration);
 
+    &::placeholder {
+        color: var(--secondary-color);
+    }
+
     &:disabled {
         opacity: 0.8;
     }
@@ -15,5 +19,9 @@
     &:not(:disabled):focus {
         color: var(--white-color);
         background-color: var(--primary-color);
+
+        &::placeholder {
+            color: var(--gray-color);
+        }
     }
 }
