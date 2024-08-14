@@ -9,8 +9,8 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { Table } from 'shared/ui/Table/Table';
 import { sortByValues, User } from '../../model/types/users';
 import { UsersTableItem } from '../UsersTableItem/UsersTableItem';
-import cls from './UsersTable.module.scss';
 import { UsersTableModal } from '../UsersTableModal/UsersTableModal';
+import cls from './UsersTable.module.scss';
 
 interface UsersTableProps {
     className?: string;
@@ -117,21 +117,9 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
         [onSort],
     );
 
-    if (isLoading) {
-        return (
-            <div className={cls.loaderWrapper}>
-                <Loader />
-            </div>
-        );
-    }
+    const isTableVisible = !isLoading && !error && users.length;
 
-    if (error) {
-        return <div className={cls.error}>Произошла ошибка при загрузке пользователей</div>;
-    }
-
-    if (!users.length) {
-        return <div className={cls.empty}>Пользователи отсутствуют</div>;
-    }
+    const isEmptyUsers = !isLoading && !error && !users.length;
 
     return (
         <>
@@ -144,8 +132,18 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
                 onThClick={onThClick}
                 currentSortHeader={sortBy}
                 sortDirection={sortDirection}
+                hidden={!isTableVisible}
             />
             <UsersTableModal isOpen={isModalOpened} onClose={() => setIsModalOpened(false)} user={selectedUser} />
+            {isLoading ? (
+                <div className={cls.loaderWrapper}>
+                    <Loader />
+                </div>
+            ) : (
+                ''
+            )}
+            {error ? <div className={cls.error}>Произошла ошибка при загрузке пользователей</div> : ''}
+            {isEmptyUsers ? <div className={cls.empty}>Пользователи отсутствуют</div> : ''}
         </>
     );
 });

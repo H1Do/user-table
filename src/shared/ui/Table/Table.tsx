@@ -21,6 +21,7 @@ interface TableProps {
     minCellWidth?: number;
     tableContent?: ReactNode;
     onThClick?: (thName: string) => void;
+    hidden?: boolean;
 }
 
 const createHeaders = (headers: string[]): TableColumn[] => {
@@ -39,6 +40,7 @@ export const Table = memo(function TableComponent({
     sortDirection,
     currentSortHeader,
     onThClick,
+    hidden,
 }: TableProps) {
     const [tableHeight, setTableHeight] = useState<string>('auto');
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -101,7 +103,7 @@ export const Table = memo(function TableComponent({
     }, [activeIndex, handleMouseMove, handleMouseUp, removeListeners]);
 
     return (
-        <div className={classNames(cls.TableWrapper, {}, [className])}>
+        <div className={classNames(cls.TableWrapper, {}, [className])} hidden={hidden}>
             <table className={cls.Table} ref={tableElement}>
                 <thead>
                     <tr>
