@@ -1,0 +1,19 @@
+.modal {
+    &Content {
+        min-width: 400px;
+    }
+
+    &Label {
+        font-weight: 500;
+    }
+
+    &Value {
+        text-align: right;
+    }
+}
+
+@media screen and (width <= 600px) {
+    .modalValue {
+        text-align: left;
+    }
+}

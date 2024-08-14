@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
@@ -19,8 +19,11 @@ export const SearchInput = memo(function SearchInputComponent({
     setSearchQuery,
     clearQuery,
 }: SearchInputProps) {
+    const [isResetVisible, setIsResetVisible] = useState(false);
+
     const onSearch = useCallback(() => {
         onSearchCallback();
+        setIsResetVisible(true);
     }, [onSearchCallback]);
 
     const onSubmit = useCallback(
@@ -31,11 +34,19 @@ export const SearchInput = memo(function SearchInputComponent({
         [onSearch],
     );
 
+    const onChange = useCallback(
+        (value: string) => {
+            setIsResetVisible(false);
+            setSearchQuery?.(value);
+        },
+        [setSearchQuery],
+    );
+
     return (
         <form onSubmit={onSubmit} className={classNames(cls.SearchInput, {}, [className])}>
-            <Input onChange={setSearchQuery} value={searchQuery} placeholder="Поиск пользователей" />
+            <Input onChange={onChange} value={searchQuery} placeholder="Поиск пользователей" />
             <Button onClick={onSearch}>Найти</Button>
-            {searchQuery && <Button onClick={clearQuery}>Очистить поиск</Button>}
+            {searchQuery && isResetVisible && <Button onClick={clearQuery}>Сбросить поиск</Button>}
         </form>
     );
 });

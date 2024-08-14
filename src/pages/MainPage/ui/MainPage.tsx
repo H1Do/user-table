@@ -49,7 +49,7 @@ export const MainPage = memo(function MainPage({ className }: MainPageProps) {
                 searchQuery={searchQuery}
                 clearQuery={onClearQuery}
             />
-            <UsersTable users={users} isLoading={isLoading} />
+            <UsersTable users={users} isLoading={isLoading} error={error} />
         </Page>
     );
 });

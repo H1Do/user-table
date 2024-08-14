@@ -5,8 +5,12 @@
     justify-content: center;
 }
 
-.loading {
-    * {
-        overflow: hidden;
-    }
+.error,
+.empty {
+    font: var(--font-l);
+    margin-top: 20px;
+}
+
+.error {
+    color: var(--error-color);
 }
