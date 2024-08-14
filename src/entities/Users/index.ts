@@ -1,7 +1,7 @@
 export {
-    getSearchQuery,
-    getSortBy,
-    getSortDirection,
+    getUsersSearchQuery as getSearchQuery,
+    getUsersSortBy as getSortBy,
+    getUsersSortDirection as getSortDirection,
     getUsers,
     getUsersError,
     getUsersIsLoading,

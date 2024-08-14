@@ -1,38 +1,46 @@
-import { memo, useMemo, useState } from 'react';
+import { getUsersSortBy, getUsersSortDirection } from 'entities/Users/model/selectors/usersSelectors';
+import { usersActions } from 'entities/Users/model/slice/usersSlice';
+import { memo, useCallback, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { sortDirectionValues } from 'shared/config/types/sort';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Table } from 'shared/ui/Table/Table';
 import { sortByValues, User } from '../../model/types/users';
 import { UsersTableItem } from '../UsersTableItem/UsersTableItem';
 import cls from './UsersTable.module.scss';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 interface UsersTableProps {
     className?: string;
     users: User[];
     isLoading?: boolean;
+    error?: string;
 }
 
-export const UsersTable = memo(function UsersTableComponent({ className, users, isLoading }: UsersTableProps) {
-    const [sortBy, setSortBy] = useState<sortByValues>();
-    const [sortDirection, setSortDirection] = useState<sortDirectionValues>();
+export const UsersTable = memo(function UsersTableComponent({ className, users, isLoading, error }: UsersTableProps) {
+    const dispatch = useAppDispatch();
+    const sortBy = useSelector(getUsersSortBy);
+    const sortDirection = useSelector(getUsersSortDirection);
+    const { setSortBy, setSortDirection } = usersActions;
 
-    const renderUsersTableItems = (user: User) => {
+    const renderUsersTableItems = useCallback((user: User) => {
         return <UsersTableItem className={cls.item} user={user} key={user.id} />;
-    };
+    }, []);
 
     const onSort = (newSortBy: sortByValues) => {
         if (newSortBy === sortBy) {
             if (sortDirection === sortDirectionValues.ASC) {
-                setSortDirection(sortDirectionValues.DESC);
+                dispatch(setSortDirection(sortDirectionValues.DESC));
             } else if (sortDirection === sortDirectionValues.DESC) {
-                setSortDirection(undefined);
+                dispatch(setSortDirection(undefined));
             } else {
-                setSortDirection(sortDirectionValues.ASC);
+                dispatch(setSortDirection(sortDirectionValues.ASC));
             }
             return;
         }
-        setSortBy(newSortBy);
-        setSortDirection(sortDirectionValues.ASC);
+        dispatch(setSortBy(newSortBy));
+        dispatch(setSortDirection(sortDirectionValues.ASC));
     };
 
     const sortedUsers = useMemo(
@@ -97,7 +105,7 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
                     headers={headers}
                     sortableHeaders={sortableHeaders}
                     minCellWidth={50}
-                    className={cls.loading}
+                    className={classNames(cls.UsersTable, {}, [className, cls.loading])}
                     onThClick={onThClick}
                     currentSortHeader={sortBy}
                     sortDirection={sortDirection}
@@ -109,11 +117,29 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
         );
     }
 
+    if (error) {
+        return (
+            <>
+                <Table
+                    headers={headers}
+                    sortableHeaders={sortableHeaders}
+                    minCellWidth={50}
+                    className={classNames(cls.UsersTable, {}, [className])}
+                    onThClick={onThClick}
+                    currentSortHeader={sortBy}
+                    sortDirection={sortDirection}
+                />
+                <div className={cls.error}>{error}</div>
+            </>
+        );
+    }
+
     return (
         <Table
             headers={headers}
             sortableHeaders={sortableHeaders}
             minCellWidth={50}
+            className={classNames(cls.UsersTable, {}, [className])}
             tableContent={sortedUsers.map(renderUsersTableItems)}
             onThClick={onThClick}
             currentSortHeader={sortBy}

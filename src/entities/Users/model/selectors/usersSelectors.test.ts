@@ -1,9 +1,9 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { sortByValues } from '../types/users';
 import {
-    getSearchQuery,
-    getSortBy,
-    getSortDirection,
+    getUsersSearchQuery,
+    getUsersSortBy,
+    getUsersSortDirection,
     getUsers,
     getUsersError,
     getUsersIsLoading,
@@ -47,39 +47,39 @@ describe('usersSelectors', () => {
         });
     });
 
-    describe('getSortBy', () => {
-        test('getSortBy returns sortBy', () => {
+    describe('getUsersSortBy', () => {
+        test('getUsersSortBy returns sortBy', () => {
             const state: DeepPartial<StateSchema> = { users: { sortBy: sortByValues.AGE } };
-            expect(getSortBy(state as StateSchema)).toBe(sortByValues.AGE);
+            expect(getUsersSortBy(state as StateSchema)).toBe(sortByValues.AGE);
         });
 
-        test('getSortBy works with empty state', () => {
+        test('getUsersSortBy works with empty state', () => {
             const state: DeepPartial<StateSchema> = {};
-            expect(getSortBy(state as StateSchema)).toBeUndefined();
+            expect(getUsersSortBy(state as StateSchema)).toBeUndefined();
         });
     });
 
-    describe('getSearchQuery', () => {
-        test('getSearchQuery returns searchQuery', () => {
+    describe('getUsersSearchQuery', () => {
+        test('getUsersSearchQuery returns searchQuery', () => {
             const state: DeepPartial<StateSchema> = { users: { searchQuery: 'test' } };
-            expect(getSearchQuery(state as StateSchema)).toBe('test');
+            expect(getUsersSearchQuery(state as StateSchema)).toBe('test');
         });
 
-        test('getSearchQuery works with empty state', () => {
+        test('getUsersSearchQuery works with empty state', () => {
             const state: DeepPartial<StateSchema> = {};
-            expect(getSearchQuery(state as StateSchema)).toBeUndefined();
+            expect(getUsersSearchQuery(state as StateSchema)).toBeUndefined();
         });
     });
 
-    describe('getSortDirection', () => {
-        test('getSortDirection returns sortDirection', () => {
+    describe('getUsersSortDirection', () => {
+        test('getUsersSortDirection returns sortDirection', () => {
             const state: DeepPartial<StateSchema> = { users: { sortDirection: sortDirectionValues.ASC } };
-            expect(getSortDirection(state as StateSchema)).toBe(sortDirectionValues.ASC);
+            expect(getUsersSortDirection(state as StateSchema)).toBe(sortDirectionValues.ASC);
         });
 
-        test('getSortDirection works with empty state', () => {
+        test('getUsersSortDirection works with empty state', () => {
             const state: DeepPartial<StateSchema> = {};
-            expect(getSortDirection(state as StateSchema)).toBeUndefined();
+            expect(getUsersSortDirection(state as StateSchema)).toBeUndefined();
         });
     });
 });

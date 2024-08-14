@@ -1,10 +1,11 @@
 import React, { memo, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Table.module.scss';
-import { sortDirectionValues } from 'shared/config/types/sort';
-import UpArrowIcon from 'shared/assets/icons/up-arrow-icon.svg';
 import DownArrowIcon from 'shared/assets/icons/down-arrow-icon.svg';
 import HorizontalLineIcon from 'shared/assets/icons/horizontal-line-icon.svg';
+import UpArrowIcon from 'shared/assets/icons/up-arrow-icon.svg';
+import { sortDirectionValues } from 'shared/config/types/sort';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Icon } from '../Icon/Icon';
+import cls from './Table.module.scss';
 
 interface TableColumn {
     text: string;
@@ -125,14 +126,14 @@ export const Table = memo(function TableComponent({
                                         <div className={cls.sortIndicator}>
                                             {currentSortHeader === text ? (
                                                 sortDirection === sortDirectionValues.ASC ? (
-                                                    <UpArrowIcon />
+                                                    <Icon Svg={UpArrowIcon} />
                                                 ) : sortDirection === sortDirectionValues.DESC ? (
-                                                    <DownArrowIcon />
+                                                    <Icon Svg={DownArrowIcon} />
                                                 ) : (
-                                                    <HorizontalLineIcon />
+                                                    <Icon Svg={HorizontalLineIcon} />
                                                 )
                                             ) : (
-                                                <HorizontalLineIcon />
+                                                <Icon Svg={HorizontalLineIcon} />
                                             )}
                                         </div>
                                     )}

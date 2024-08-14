@@ -16,10 +16,10 @@ export const UsersSlice = createSlice({
         setSearchQuery: (state, action: PayloadAction<string>) => {
             state.searchQuery = action.payload;
         },
-        setSortBy: (state, action: PayloadAction<sortByValues>) => {
+        setSortBy: (state, action: PayloadAction<sortByValues | undefined>) => {
             state.sortBy = action.payload;
         },
-        setSortDirection: (state, action: PayloadAction<sortDirectionValues>) => {
+        setSortDirection: (state, action: PayloadAction<sortDirectionValues | undefined>) => {
             state.sortDirection = action.payload;
         },
     },
