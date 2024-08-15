@@ -1,5 +1,7 @@
 @import 'reset';
 @import 'font';
+@import 'themes/light';
+@import 'themes/dark';
 @import 'variables/global';
 
 body {
@@ -7,4 +9,5 @@ body {
     font-size: var(--font-size-m);
     line-height: var(--font-line-m);
     color: var(--primary-color);
+    background-color: var(--bg-color);
 }

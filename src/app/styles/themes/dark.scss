@@ -1,0 +1,9 @@
+.dark {
+    --primary-color: var(--white-color);
+    --secondary-color: #b3b3b3;
+    --bg-color: var(--black-color);
+    --inverted-bg-color: var(--white-color);
+    --border: 2px solid var(--primary-color);
+    --table-bg-color: var(--black-color);
+    --table-tr-hover-color: var(--dark-gray-color);
+}

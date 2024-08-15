@@ -51,7 +51,7 @@ export const Table = memo(function TableComponent({
         if (tableElement.current) {
             setTableHeight(`${tableElement.current.offsetHeight}px`);
         }
-    }, [headers]);
+    }, [headers, hidden]);
 
     const handleMouseDown = useCallback((index: number) => {
         setActiveIndex(index);

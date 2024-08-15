@@ -7,22 +7,18 @@
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
-    // borders
-
-    --border-radius: 6px;
-    --border: 2px solid var(--primary-color);
-
     // colors
 
-    --primary-color: #1f1e1e;
-    --secondary-color: #373738;
     --white-color: #fff;
     --light-gray-color: #f0f0f0;
     --gray-color: #a2a2a2;
-    --black-color: #000;
-    --bg-color: var(--white-color);
-    --inverted-bg-color: var(--black-color);
+    --dark-gray-color: #393939;
+    --black-color: #1b1b1b;
     --error-color: #f00;
+
+    // borders
+
+    --border-radius: 6px;
 
     // overlay
 
@@ -39,7 +35,6 @@
 
     // table
 
-    --table-bg-color: var(--white-color);
     --table-cell-padding: 10px;
     --min-cell-width: 50px;
 

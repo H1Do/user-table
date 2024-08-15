@@ -1,12 +1,6 @@
 .UsersTableItem {
     cursor: pointer;
 
-    &:hover {
-        * {
-            background-color: var(--light-gray-color);
-        }
-    }
-
     td {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -14,5 +8,11 @@
         border-top: 1px solid var(--gray-color);
         padding: var(--table-cell-padding);
         transition: var(--transition-duration) background;
+    }
+
+    &:hover {
+        td {
+            background-color: var(--table-tr-hover-color);
+        }
     }
 }

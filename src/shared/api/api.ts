@@ -1,4 +1,9 @@
-export const $api = {
+export type ApiType = {
+    get: <T>(url: string, options?: RequestInit) => Promise<T>;
+    post: <T>(url: string, options?: RequestInit) => Promise<T>;
+};
+
+export const $api: ApiType = {
     get: async <T>(url: string, options: RequestInit = {}): Promise<T> => {
         const response = await fetch(`${__API__}${url}`, {
             method: 'GET',
@@ -35,5 +40,3 @@ export const $api = {
         return (await response.json()) as T;
     },
 };
-
-export type $apiType = typeof $api;

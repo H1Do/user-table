@@ -8,12 +8,6 @@
     }
 
     &Value {
-        text-align: right;
-    }
-}
-
-@media screen and (width <= 600px) {
-    .modalValue {
         text-align: left;
     }
 }
