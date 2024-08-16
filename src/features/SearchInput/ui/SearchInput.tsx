@@ -53,11 +53,13 @@ export const SearchInput = memo(function SearchInputComponent({
                 />
                 <Button onClick={onSearch}>Найти</Button>
             </div>
-            {searchQuery && isResetVisible && (
-                <Button theme={ButtonTheme.CLEAR} onClick={clearQuery}>
-                    Сбросить поиск
-                </Button>
-            )}
+            <Button
+                className={classNames(cls.reset, { [cls.visible]: searchQuery && isResetVisible }, [])}
+                theme={ButtonTheme.CLEAR}
+                onClick={clearQuery}
+            >
+                Сбросить поиск
+            </Button>
         </form>
     );
 });
