@@ -6,6 +6,7 @@
     "scripts": {
         "start": "webpack server --env port=3000 --env api=https://dummyjson.com",
         "build:prod": "webpack --env mode=production --env api=https://dummyjson.com",
+        "build:prod:gh_pages": "webpack --env mode=production --env api=https://dummyjson.com --env publicPath=/user-table/",
         "build:dev": "webpack --env mode=development --env api=https://dummyjson.com",
         "lint:ts": "eslint \"**/*.{ts,tsx}\"",
         "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",

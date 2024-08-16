@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import cls from './SearchInput.module.scss';
 
@@ -44,9 +44,20 @@ export const SearchInput = memo(function SearchInputComponent({
 
     return (
         <form onSubmit={onSubmit} className={classNames(cls.SearchInput, {}, [className])}>
-            <Input onChange={onChange} value={searchQuery} placeholder="Поиск пользователей" />
-            <Button onClick={onSearch}>Найти</Button>
-            {searchQuery && isResetVisible && <Button onClick={clearQuery}>Сбросить поиск</Button>}
+            <div className={cls.container}>
+                <Input
+                    className={cls.input}
+                    onChange={onChange}
+                    value={searchQuery}
+                    placeholder="Поиск пользователей"
+                />
+                <Button onClick={onSearch}>Найти</Button>
+            </div>
+            {searchQuery && isResetVisible && (
+                <Button theme={ButtonTheme.CLEAR} onClick={clearQuery}>
+                    Сбросить поиск
+                </Button>
+            )}
         </form>
     );
 });

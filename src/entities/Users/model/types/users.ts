@@ -71,11 +71,19 @@ export interface User {
     role: string;
 }
 
+export enum tableColumnsValues {
+    FULL_NAME = 'ФИО',
+    AGE = 'Возраст',
+    GENDER = 'Пол',
+    PHONE = 'Телефон',
+    ADDRESS = 'Адрес',
+}
+
 export enum sortByValues {
-    FULL_NAME = 'Full name',
-    AGE = 'Age',
-    GENDER = 'Gender',
-    ADDRESS = 'Address',
+    FULL_NAME = 'ФИО',
+    AGE = 'Возраст',
+    GENDER = 'Пол',
+    ADDRESS = 'Адрес',
 }
 
 export interface UsersSchema {

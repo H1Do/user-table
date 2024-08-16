@@ -1,4 +1,24 @@
 .SearchInput {
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+    }
+}
+
+.input {
+    max-width: 40%;
+    width: 100%;
+
+    @media screen and (width <= 768px) {
+        max-width: 100%;
+    }
 }

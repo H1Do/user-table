@@ -7,7 +7,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Table } from 'shared/ui/Table/Table';
-import { sortByValues, User } from '../../model/types/users';
+import { sortByValues, tableColumnsValues, User } from '../../model/types/users';
 import { UsersTableItem } from '../UsersTableItem/UsersTableItem';
 import { UsersTableModal } from '../UsersTableModal/UsersTableModal';
 import cls from './UsersTable.module.scss';
@@ -103,7 +103,16 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
         [sortDirection, sortBy, users],
     );
 
-    const headers = useMemo(() => ['Full name', 'Age', 'Gender', 'Phone', 'Address'], []);
+    const headers = useMemo(
+        () => [
+            tableColumnsValues.FULL_NAME,
+            tableColumnsValues.AGE,
+            tableColumnsValues.GENDER,
+            tableColumnsValues.PHONE,
+            tableColumnsValues.ADDRESS,
+        ],
+        [],
+    );
 
     const sortableHeaders = useMemo(
         () => [sortByValues.FULL_NAME, sortByValues.AGE, sortByValues.GENDER, sortByValues.ADDRESS],
@@ -143,7 +152,7 @@ export const UsersTable = memo(function UsersTableComponent({ className, users, 
                 ''
             )}
             {error ? <div className={cls.error}>Произошла ошибка при загрузке пользователей</div> : ''}
-            {isEmptyUsers ? <div className={cls.empty}>Пользователи отсутствуют</div> : ''}
+            {isEmptyUsers ? <div className={cls.empty}>Пользователей не найдено</div> : ''}
         </>
     );
 });

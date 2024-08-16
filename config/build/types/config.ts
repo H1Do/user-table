@@ -5,12 +5,14 @@ export interface BuildPaths {
     build: string;
     html: string;
     src: string;
+    public: string;
 }
 
 export interface BuildEnv {
     mode: BuildMode;
     port: number;
     api: string;
+    publicPath: string;
 }
 
 export interface BuildOptions {

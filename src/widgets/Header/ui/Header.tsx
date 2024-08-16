@@ -1,7 +1,7 @@
+import { ThemeSwitchButton } from 'features/ThemeSwitchButton';
+import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Header.module.scss';
-import { memo } from 'react';
-import { ThemeSwitchButton } from 'features/ThemeSwitchButton';
 
 interface HeaderProps {
     className?: string;
@@ -10,7 +10,8 @@ interface HeaderProps {
 export const Header = memo(function HeaderComponent({ className }: HeaderProps) {
     return (
         <header className={classNames(cls.Header, {}, [className])}>
-            <ThemeSwitchButton />
+            <h1 className={cls.title}>Таблица пользователей</h1>
+            <ThemeSwitchButton className={cls.themeButton} />
         </header>
     );
 });
